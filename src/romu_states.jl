@@ -82,13 +82,13 @@ function setstate(::Type{RomuMono32State}, x::T=0) where {T<:UInt32}
     return RomuMono32State(x)
 end
 
-setstate(::Type{RomuQuadState}) = setstate(RomuQuadState, rand(uint64range, 4)...)
-setstate(::Type{RomuTrioState}) = setstate(RomuTrioState, rand(uint64range, 3)...)
-setstate(::Type{RomuDuoState}) = setstate(RomuDuoState, rand(uint64range, 2)...)
-setstate(::Type{RomuDuoJrState}) = setstate(RomuDuoJrState, rand(uint64range, 2)...)
-setstate(::Type{RomuQuad32State}) = setstate(RomuQuad32State, rand(uint32range, 4)...)
-setstate(::Type{RomuTrio32State}) = setstate(RomuTrio32State, rand(uint32range, 3)...)
-setstate(::Type{RomuMono32State}) = setstate(RomuMono32State, (rand(uint32range) & mono32mask) + mono32offset)
+setstate(::Type{RomuQuadState}, x::Nothing) = setstate(RomuQuadState, rand(uint64range, 4)...)
+setstate(::Type{RomuTrioState}, x::Nothing) = setstate(RomuTrioState, rand(uint64range, 3)...)
+setstate(::Type{RomuDuoState}, x::Nothing) = setstate(RomuDuoState, rand(uint64range, 2)...)
+setstate(::Type{RomuDuoJrState}, x::Nothing) = setstate(RomuDuoJrState, rand(uint64range, 2)...)
+setstate(::Type{RomuQuad32State}, x::Nothing) = setstate(RomuQuad32State, rand(uint32range, 4)...)
+setstate(::Type{RomuTrio32State}, x::Nothing) = setstate(RomuTrio32State, rand(uint32range, 3)...)
+setstate(::Type{RomuMono32State}, x::Nothing) = setstate(RomuMono32State, (rand(uint32range) & mono32mask) + mono32offset)
 
     
 validate(::Type{RomuQuadState}, w::T=0, x::T=0, y::T=0, z::T=0) where {T<:UInt64} =
