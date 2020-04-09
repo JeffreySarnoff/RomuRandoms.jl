@@ -1,3 +1,9 @@
+const uint64range = UnitRange(one(UInt64), typemax(UInt64))
+const uint32range = UnitRange(one(UInt32), typemax(UInt32))
+    
+const mono32mask   = 0x1fffffff    # 536_870_911
+const mono32offset = 0x44f619d0    # 1_156_979_152
+
 mutable struct RomuQuadState
     wstate::UInt64
     xstate::UInt64
@@ -71,11 +77,10 @@ end
 
 function setstate(::Type{RomuMono32State}, x::T=0) where {T<:UInt32}
     validate(RomuMono32State, x)
+    x = x & mono32mask
+    x = x + mono32offset
     return RomuMono32State(x)
 end
-
-const uint64range = UnitRange(one(UInt64), typemax(UInt64))
-const uint32range = UnitRange(one(UInt32), typemax(UInt32))
 
 setstate(::Type{RomuQuadState}) = setstate(RomuQuadState, rand(uint64range, 4)...)
 setstate(::Type{RomuTrioState}) = setstate(RomuTrioState, rand(uint64range, 3)...)
@@ -83,9 +88,9 @@ setstate(::Type{RomuDuoState}) = setstate(RomuDuoState, rand(uint64range, 2)...)
 setstate(::Type{RomuDuoJrState}) = setstate(RomuDuoJrState, rand(uint64range, 2)...)
 setstate(::Type{RomuQuad32State}) = setstate(RomuQuad32State, rand(uint32range, 4)...)
 setstate(::Type{RomuTrio32State}) = setstate(RomuTrio32State, rand(uint32range, 3)...)
-setstate(::Type{RomuMono32State}) = setstate(RomuMono32State, rand(uint32range, 2)...)
+setstate(::Type{RomuMono32State}) = setstate(RomuMono32State, (rand(uint32range) & mono32mask) + mono32offset)
 
-
+    
 validate(::Type{RomuQuadState}, w::T=0, x::T=0, y::T=0, z::T=0) where {T<:UInt64} =
    if iszero(w) || iszero(x) || iszero(y) || iszero(z)
        throw(RomuException("All four states must be initialized to nonzero values."))
