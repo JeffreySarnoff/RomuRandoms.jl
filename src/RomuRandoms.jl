@@ -5,7 +5,7 @@ export romu, state, setstate,
     romuquad, romutrio, romuduo, romuduojr, romuquad32, romutrio32, romumono32
        
 
-struct RomuException <: exception
+struct RomuException <: Exception
     msg::AbstractString
 end
 
