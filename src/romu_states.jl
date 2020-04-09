@@ -1,40 +1,40 @@
-struct RomuQuadState
+mutable struct RomuQuadState
     wstate::UInt64
     xstate::UInt64
     ystate::UInt64
     zstate::UInt64
 end
 
-struct RomuTrioState
+mutable struct RomuTrioState
     xstate::UInt64
     ystate::UInt64
     zstate::UInt64
 end
 
-struct RomuDuoState
+mutable struct RomuDuoState
     xstate::UInt64
     ystate::UInt64
 end
 
-struct RomuDuoJrState
+mutable struct RomuDuoJrState
     xstate::UInt64
     ystate::UInt64
 end
 
-struct RomuQuad32State
+mutable struct RomuQuad32State
     wstate::UInt32
     xstate::UInt32
     ystate::UInt32
     zstate::UInt32
 end
 
-struct RomuTrio32State
+mutable struct RomuTrio32State
     xstate::UInt32
     ystate::UInt32
     zstate::UInt32
 end
 
-struct RomuMono32State
+mutable struct RomuMono32State
     xstate::UInt32
 end
 
