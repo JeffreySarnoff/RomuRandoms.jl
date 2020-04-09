@@ -52,7 +52,7 @@ end
 
 function setstate(::Type{RomuTrioState}, x::T=0, y::T=0, z::T=0) where {T<:UInt64}
     validate(RomuTrioState, x, y, z)
-    return RomuTrioState(w, x, y, z)
+    return RomuTrioState(x, y, z)
 end
 
 function setstate(::Type{RomuDuoState}, x::T=0, y::T=0) where {T<:UInt64}
@@ -72,7 +72,7 @@ end
 
 function setstate(::Type{RomuTrio32State}, x::T=0, y::T=0, z::T=0) where {T<:UInt32}
     validate(RomuTrio32State, x, y, z)
-    return RomuTrio32State(w, x, y, z)
+    return RomuTrio32State(x, y, z)
 end
 
 function setstate(::Type{RomuMono32State}, x::T=0) where {T<:UInt32}
