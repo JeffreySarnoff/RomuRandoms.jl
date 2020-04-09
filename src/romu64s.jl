@@ -1,7 +1,7 @@
 const Romu64 = 0xd3833e804f4c574b  # 1_5241_094_284_759_029_579
 
 function romu_quad(state::RomuQuadState)
-    w, x, y, z = state.w, state.x, state.y, state.z
+    w, x, y, z = state.wstate, state.xstate, state.ystate, state.zstate
     state.wstate = Romu64 * z
     state.xstate = z + rol(w, 52)
     state.ystate = y - x
@@ -11,7 +11,7 @@ function romu_quad(state::RomuQuadState)
 end
 
 function romu_trio(state::RomuTrioState)
-    x, y, z = state.x, state.y, state.z
+    x, y, z = state.xstate, state.ystate, state.zstate
     state.xstate = Romu64 * z
     x = y - x
     state.ystate = rol(x, 12)  
@@ -21,14 +21,14 @@ function romu_trio(state::RomuTrioState)
 end
 
 function romu_duo(state::RomuDuoState)
-    x, y = state.x, state.y
+    x, y = state.xstate, state.ystate
     state.xstate = Romu64 * y
     state.ystate = rol(y, 36) + rol(y, 15) - x  
     return state
 end
 
 function romu_duojr(state::RomuDuoState)
-    x, y = state.x, state.y
+    x, y = state.xstate, state.ystate
     state.xstate = Romu64 * y
     y -= x
     state.ystate = rol(y, 27)  
