@@ -23,12 +23,12 @@ end
 romu_trio2(state::RomuTrioState) = romu_trio2(state.xstate, state.ystate, state.zstate)
 
 function romu_trio2(xstate::T, ystate::T, zstate::T) where {T<:UInt64}
-    xstate = Romu64 * zstate
+    xnewstate = Romu64 * zstate
     zstate = zstate - ystate
     zstate = rol(zstate, 44)
     ystate = ystate - xstate
     ystate = rol(ystate, 12)
-    return RomuTrioState(xstate,ystate,zstate)
+    return RomuTrioState(xnewstate,ystate,zstate)
 end    
 
 function romu_duo(state::RomuDuoState)
