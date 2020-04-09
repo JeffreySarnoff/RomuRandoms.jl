@@ -2,7 +2,7 @@ module RomuRandoms
 
 export romu, state, setstate, 
     RomuQuad, RomuTrio, RomuDuo, RomuDuoJr, RomuQuad32, RomuTrio32, RomuMono32,
-    romuquad, romutrio, romuduo, romuduojr, romuquad32, romutrio32, romumono32
+    romu_quad, romu_trio, romu_duo, romu_duojr, romu_quad32, romu_trio32, romu_mono32
        
 
 struct RomuException <: Exception
