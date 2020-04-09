@@ -63,7 +63,7 @@ end
 function setstate(::Type{RomuDuoJrState}, x::T=0, y::T=0) where {T<:UInt64}
     validate(RomuDuoJrState, x, y)
     return RomuDuoJrState(x, y)
-enduuint32rangeange
+end
 
 function setstate(::Type{RomuQuad32State}, w::T=0, x::T=0, y::T=0, z::T=0) where {T<:UInt32}
     validate(RomuQuad32State, w, x, y, z)
