@@ -1,7 +1,7 @@
 const Romu32 = 0xc61d672b    # 3_323_815_723
 
 function romu_quad32(state::RomuQuad32State)
-    w, x, y, z = state.w, state.x, state.y, state.z
+    w, x, y, z = state.wstate, state.xstate, state.ystate, state.zstate
     state.wstate = Romu32 * z
     state.xstate = z + rol(w, 26)
     state.ystate = y - x
@@ -11,7 +11,7 @@ function romu_quad32(state::RomuQuad32State)
 end
 
 function romu_trio32(state::RomuTrio32State)
-    x, y, z = state.x, state.y, state.z
+    x, y, z = state.xstate, state.ystate, state.zstate
     state.xstate = Romu32 * z
     x = y - x
     state.ystate = rol(x, 6)  
@@ -21,7 +21,7 @@ function romu_trio32(state::RomuTrio32State)
 end
 
 function romu_mono32(state::RomuMono32State)
-    x = state.x
+    x = state.xstate
     x = x >> 16
     x = x * Romu32
     x = rol(x, 12)
